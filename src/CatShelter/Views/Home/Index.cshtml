@@ -1,0 +1,31 @@
+﻿@model CatShelter.ViewModels.CatListVM[]
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cats</title>
+</head>
+<body>
+    <h1> Himless Cats</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Is friendly?</th>
+        </tr>
+        @foreach (var cat in Model)
+        {
+            <tr>
+                <td>@cat.Name</td>
+                @if (@cat.Friendly)
+                {
+                    <td><span style="background-color:green"> Snäll</span></td>
+                }
+                else
+                {
+                    <td><span style="background-color:red"> Elak</span></td>
+                }
+            </tr>
+        }
+    </table>
+</body>
+</html>
+
