@@ -10,24 +10,16 @@ namespace CatShelter.Controllers
 {
     public class HomeController : Controller
     {
-        CatShelterContext context;
-        public HomeController(CatShelterContext context)
+        ICatRepository repository;
+        public HomeController(ICatRepository repository)
         {
-            this.context = context;
+            this.repository = repository;
         }
 
         public IActionResult Index()
         {
-            var cats = context.Cats
-                .OrderBy(o => o.Name)
-                .Select(o => new CatListVM
-                {
-                    Name = o.Name,
-                    Friendly = o.Kindness > 60 ? true : false
-                })
-                .ToArray();
-
-            return View(cats);
+            var model = repository.GetAll();
+            return View(model);
         }
     }
 }
